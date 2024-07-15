@@ -1,4 +1,3 @@
-from fasthtml_hf import setup_hf_backup
 from fasthtml.common import *
 from fasthtml.oauth import WebApplicationClient
 from fasthtml.oauth import *
@@ -14,8 +13,7 @@ hf_state = None
 app = FastHTMLWithLiveReload()
 rt = app.route
 
-# base = "mihaidobrescu-fasthtml-streamlit.hf.space/"
-base = "localhost:5001"
+base = "mihaidobrescu-fasthtml-docker.hf.space"
 
 git_client_id = os.environ.get("GIT_CLIENT_ID")
 git_client_secret = os.environ.get("GIT_CLIENT_SECRET")
@@ -102,8 +100,3 @@ def get():
 
     return Titled("Login", A("GitHub", href=git_login_link), A("Google", href=google_login_link),
                   A("HuggingFace", href=hf_login_link))
-
-
-setup_hf_backup(app)
-run_uv()
-# uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 8501)))
